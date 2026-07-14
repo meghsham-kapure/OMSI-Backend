@@ -50,3 +50,25 @@ export const findProjectById = withMongoErrorHandling(async (projectId) => {
 export const deleteProjectById = withMongoErrorHandling(async (projectId) => {
   return await Project.findByIdAndDelete(projectId);
 });
+
+export const getAllFeaturedProjects = withMongoErrorHandling(async () => {
+  return await Project.find({ isFeatured: true })
+    .sort({ createdAt: -1 })
+    .select({ __v: 0 });
+});
+
+export const getAllNonFeaturedProjectsList = withMongoErrorHandling(
+  async () => {
+    return await Project.find({ isFeatured: false })
+      .sort({ createdAt: -1 })
+      .select({
+        title: 1,
+        description: 1,
+        category: 1,
+        status: 1,
+        location: 1,
+        client: 1,
+        startDate: 1,
+      });
+  }
+);

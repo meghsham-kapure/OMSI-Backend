@@ -28,47 +28,6 @@ const projectBodySchema = z.object({
   isLive: z.boolean().default(true),
 });
 
-export const getAllProjectsRequestSchema = z.object({
-  body: z.object({}).optional(),
-  params: z.object({}).optional(),
-  query: z.object({
-    page: z.coerce.number().int().min(1).default(1),
-    limit: z.coerce.number().int().min(1).max(100).default(10),
-    category: z.enum(CATEGORIES).optional(),
-    status: z.enum(PROJECT_STATUS).optional(),
-    isFeatured: z.coerce.boolean().optional(),
-    isLive: z.coerce.boolean().optional(),
-    search: z.string().trim().optional(),
-  }),
-  headers: z.object({}).optional(),
-  cookies: z.object({}).optional(),
-});
-
-export const getAllFeaturedProjectsRequestSchema = z.object({
-  body: z.object({}).optional(),
-  params: z.object({}).optional(),
-  query: z.object({
-    page: z.coerce.number().int().min(1).default(1),
-    limit: z.coerce.number().int().min(1).max(100).default(10),
-    category: z.enum(CATEGORIES).optional(),
-    status: z.enum(PROJECT_STATUS).optional(),
-    isLive: z.coerce.boolean().optional(),
-    search: z.string().trim().optional(),
-  }),
-  headers: z.object({}).optional(),
-  cookies: z.object({}).optional(),
-});
-
-export const getProjectByIdRequestSchema = z.object({
-  body: z.object({}).optional(),
-  params: z.object({
-    projectId: AppValidator.idSchema,
-  }),
-  query: z.object({}).optional(),
-  headers: z.object({}).optional(),
-  cookies: z.object({}).optional(),
-});
-
 export const updateProjectRequestSchema = z.object({
   body: projectBodySchema
     .partial()
@@ -213,5 +172,62 @@ export const updateProjectByIdRequestSchema = z.object({
   }),
 
   query: z.object({}).optional(),
+  cookies: z.object({}).optional(),
+});
+
+export const getFeaturedProjectsListRequestSchema = z.object({
+  body: z.object({}).optional(),
+  params: z.object({}).optional(),
+  query: z.object({}).optional(),
+  headers: z.object({}).optional(),
+  cookies: z.object({}).optional(),
+});
+
+export const getNonFeaturedProjectsListRequestSchema = z.object({
+  body: z.object({}).optional(),
+  params: z.object({}).optional(),
+  query: z.object({}).optional(),
+  headers: z.object({}).optional(),
+  cookies: z.object({}).optional(),
+});
+
+export const getAllProjectsRequestSchema = z.object({
+  body: z.object({}).optional(),
+  params: z.object({}).optional(),
+  query: z.object({
+    page: z.coerce.number().int().min(1).default(1),
+    limit: z.coerce.number().int().min(1).max(100).default(10),
+    category: z.enum(CATEGORIES).optional(),
+    status: z.enum(PROJECT_STATUS).optional(),
+    isFeatured: z.coerce.boolean().optional(),
+    isLive: z.coerce.boolean().optional(),
+    search: z.string().trim().optional(),
+  }),
+  headers: z.object({}).optional(),
+  cookies: z.object({}).optional(),
+});
+
+export const getAllFeaturedProjectsRequestSchema = z.object({
+  body: z.object({}).optional(),
+  params: z.object({}).optional(),
+  query: z.object({
+    page: z.coerce.number().int().min(1).default(1),
+    limit: z.coerce.number().int().min(1).max(100).default(10),
+    category: z.enum(CATEGORIES).optional(),
+    status: z.enum(PROJECT_STATUS).optional(),
+    isLive: z.coerce.boolean().optional(),
+    search: z.string().trim().optional(),
+  }),
+  headers: z.object({}).optional(),
+  cookies: z.object({}).optional(),
+});
+
+export const getProjectByIdRequestSchema = z.object({
+  body: z.object({}).optional(),
+  params: z.object({
+    projectId: AppValidator.idSchema,
+  }),
+  query: z.object({}).optional(),
+  headers: z.object({}).optional(),
   cookies: z.object({}).optional(),
 });

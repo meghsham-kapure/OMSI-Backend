@@ -97,3 +97,27 @@ export const deleteProjectByIdController = async (req, res) => {
     })
   );
 };
+
+export const getFeaturedProjectsListController = async (req, res) => {
+  const result = await ProjectService.getFeaturedProjectsListService();
+
+  return res.status(200).json(
+    new ApiResponse({
+      httpStatusCode: 200,
+      message: result.message,
+      data: result.data,
+    })
+  );
+};
+
+export const getNonFeaturedProjectsListController = async (req, res) => {
+  const result = await ProjectService.getNonFeaturedProjectsListService();
+
+  return res.status(200).json(
+    new ApiResponse({
+      httpStatusCode: 200,
+      message: result.message,
+      data: result.data,
+    })
+  );
+};

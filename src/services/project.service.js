@@ -333,3 +333,23 @@ export const deleteProjectByIdService = async (projectId) => {
     },
   };
 };
+
+export const getFeaturedProjectsListService = async () => {
+  const projects = await ProjectRepo.getAllFeaturedProjects();
+
+  return {
+    success: true,
+    message: "Featured projects fetched successfully",
+    data: { projects },
+  };
+};
+
+export const getNonFeaturedProjectsListService = async () => {
+  const projects = await ProjectRepo.getAllNonFeaturedProjectsList();
+
+  return {
+    success: true,
+    message: "Projects fetched successfully",
+    data: { projects },
+  };
+};

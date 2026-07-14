@@ -55,4 +55,16 @@ projectRouter.delete(
   asyncHandler(ProjectController.deleteProjectByIdController)
 );
 
+projectRouter.get(
+  "/getFeaturedProjectsList",
+  validate(ProjectValidator.getFeaturedProjectsListRequestSchema),
+  asyncHandler(ProjectController.getFeaturedProjectsListController)
+);
+
+projectRouter.get(
+  "/getNonFeaturedProjectsList",
+  validate(ProjectValidator.getNonFeaturedProjectsListRequestSchema),
+  asyncHandler(ProjectController.getNonFeaturedProjectsListController)
+);
+
 export default projectRouter;
