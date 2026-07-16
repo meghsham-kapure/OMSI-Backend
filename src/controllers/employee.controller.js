@@ -31,6 +31,26 @@ export const getAllTeamMembersController = async (req, res) => {
   );
 };
 
+export const editTeamMemberController = async (req, res) => {
+  const { teamMemberId } = req.validated.params;
+  const teamDetails = req.validated.body;
+  const teamFiles = req.files || {};
+
+  const result = await TeamService.editTeamMemberService({
+    teamMemberId,
+    teamDetails,
+    teamFiles,
+  });
+
+  return res.status(200).json(
+    new ApiResponse({
+      httpStatusCode: 200,
+      message: result.message,
+      data: result.data,
+    })
+  );
+};
+
 export const deleteTeamMemberByIdController = async (req, res) => {
   const { teamMemberId } = req.params;
 
